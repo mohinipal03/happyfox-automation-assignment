@@ -120,8 +120,10 @@ public class SupportPortalPage extends AppPage{
 		   return new AdminPortalTest2ndPage(driver);
 	 }
 	
+     // FIX NEEDED: This sleep method should be removed completely
+     // Thread.sleep makes tests unreliable and slow
      public void sleep() throws InterruptedException {
-    	 Thread.sleep(1000);
+      Thread.sleep(1000); // TODO: Remove this method and replace all calls with explicit waits
      }
      
      

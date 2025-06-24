@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import webdriverbase.AppPage;
 
+// FIX NEEDED: Class name should follow PascalCase convention
+// SHOULD BE: LoginPage instead of Login_Page
 public class Login_Page extends AppPage {
     
     private static final Logger logger = LoggerFactory.getLogger(Login_Page.class);
@@ -48,6 +50,8 @@ public class Login_Page extends AppPage {
         clearAndType(passwordField, password);
     }
 
+    // FIX NEEDED: Method name should follow camelCase convention
+    // SHOULD BE: clickLoginButton instead of clickLoginbutton
     public void clickLoginbutton() {
         logger.info("Clicking login button");
         waitForElementToBeClickable(loginButton);
@@ -79,6 +83,11 @@ public class Login_Page extends AppPage {
     }
 }
 
+// FIX NEEDED: These classes should be in separate files, not in Login_Page.java
+// CRITICAL ISSUE: Multiple classes in single file violates Java conventions
+// SHOULD BE: Create separate files - BasePage.java, LoginPage.java, HomePage.java
+
+// TODO: Move to separate file - BasePage.java
 class BasePage {
     protected WebDriver driver;
 
@@ -87,11 +96,14 @@ class BasePage {
     }
 }
 
+// TODO: Move to separate file - LoginPage.java
+// FIX NEEDED: This class duplicates Login_Page functionality
 class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
+    // FIX NEEDED: Hard-coded locators should use @FindBy annotations
     public void login(String username, String password) {
         driver.findElement(By.id("username")).sendKeys(username);
         driver.findElement(By.id("password")).sendKeys(password);
@@ -103,21 +115,25 @@ class LoginPage extends BasePage {
     }
 }
 
+// TODO: Move to separate file - HomePage.java
 class HomePage extends BasePage {
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
+    // FIX NEEDED: Hard-coded URL should be in configuration file
     public void verifyHomePage() {
         if (!driver.getCurrentUrl().equals("https://www.happyfox.com/home")) {
             throw new IllegalStateException("Not on the home page");
         }
     }
 
+    // FIX NEEDED: Hard-coded locator should use @FindBy annotation
     public void navigateToProfile() {
         driver.findElement(By.id("profileLink")).click();
     }
 
+    // FIX NEEDED: Inner class should be separate file - TablePage.java
     public class TablePage extends BasePage {
 
         private By rowLocator = By.xpath("//table[@id='dataTable']/tbody/tr");
@@ -126,13 +142,14 @@ class HomePage extends BasePage {
             super(driver);
         }
 
+        // FIX NEEDED: System.out.println should be replaced with proper logging
         public void retrieveRowTexts() {
             List<WebElement> rows = driver.findElements(rowLocator);
 
             for (int i = 0; i < rows.size(); i++) {
                 WebElement row = rows.get(i);
                 String rowText = row.getText();
-                System.out.println("Row " + i + " Text: " + rowText);
+                System.out.println("Row " + i + " Text: " + rowText); // TODO: Use logger instead
             }
         }
     }

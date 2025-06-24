@@ -19,11 +19,13 @@ public class AdminPortalTest1stPage extends AppPage {
 	}
 	
 	
+	// FIX NEEDED: Variable names should follow camelCase convention
+	// SHOULD BE: title instead of Title, statuses instead of Statuses
 	@FindBy(xpath = "//span[@class='hf-top-bar_title_text hf-font-light']")
-	private WebElement Title;
+	private WebElement Title; // TODO: Rename to 'title'
 	
 	@FindBy(linkText = "Statuses")
-	private WebElement Statuses;
+	private WebElement Statuses; // TODO: Rename to 'statuses'
 	
 	public void clickStatus()
  	{
@@ -133,8 +135,11 @@ public class AdminPortalTest1stPage extends AppPage {
 		PrioritySection.click();
 	}
 	
+	// FIX NEEDED: Absolute XPath is extremely fragile and will break with UI changes
+	// SHOULD BE: Use relative XPath or other stable locators
+	// EXAMPLE: @FindBy(xpath = "//button[contains(@class,'new-priority') or contains(text(),'New Priority')]")
 	@FindBy(xpath = "/html[1]/body[1]/div[3]/div[1]/section[1]/section[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr[9]/td[2]")
-	private WebElement NewPriority;
+	private WebElement NewPriority; // TODO: Replace with stable locator
 	
 	public void clickNewPriority() {
 		NewPriority.click();
@@ -148,8 +153,10 @@ public class AdminPortalTest1stPage extends AppPage {
 		PriorityName.sendKeys(text);
 	}
 	
+	// FIX NEEDED: Another absolute XPath that will break easily
+	// SHOULD BE: Use data-test-id or other stable attributes
 	@FindBy(xpath = "/html[1]/body[1]/div[3]/div[1]/header[1]/div[2]/nav[1]/div[7]/div[1]/div[1]")
-	private WebElement PriorityDescription;
+	private WebElement PriorityDescription; // TODO: Replace with stable locator
 	
 	public void enterPriorityDescription(String text) {
 		PriorityDescription.clear();
@@ -217,9 +224,11 @@ public class AdminPortalTest1stPage extends AppPage {
 	@FindBy(xpath = "//button[@data-test-id='delete-dependants-primary-action']")
 	private WebElement DeleteConfirm;
 	
+	// FIX NEEDED: Thread.sleep should be replaced with explicit wait
+	// 5 seconds is too long and makes tests slow
 	public void clickDeleteConfirm() throws InterruptedException{
 		DeleteConfirm.click();
-		Thread.sleep(5000);
+		Thread.sleep(5000); // TODO: Replace with WebDriverWait for success message or page reload
 	}
 	
 
@@ -279,8 +288,11 @@ public class AdminPortalTest1stPage extends AppPage {
 		Logout.click();
 	}
 	
+	// FIX NEEDED: This method should be removed completely
+	// Thread.sleep makes tests unreliable and slow
+	// SHOULD BE: Use explicit waits instead of sleep methods
 	public void sleep() throws InterruptedException {
-		Thread.sleep(2000);
+		Thread.sleep(2000); // TODO: Remove this method and replace all calls with explicit waits
 	}
 	
 	

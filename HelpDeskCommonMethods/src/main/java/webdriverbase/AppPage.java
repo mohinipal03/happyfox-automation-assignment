@@ -29,9 +29,14 @@ public class AppPage {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AppPage.class);
 	
+	// FIX NEEDED: Move these to configuration file (config.properties)
+	// Hard-coded paths should be externalized
 	public static String PATH_TO_TEST_DATA_FILE = "src/main/resources/";
 	public static String WINDOWS_PATH_TO_TEST_DATA_DIR = "src/main/resources/";
-	public static int WAIT_TIME_SEC = 60;
+	
+	// FIX NEEDED: 60 seconds wait time is too high, should be 10-15 seconds max
+	// Also should be moved to configuration file
+	public static int WAIT_TIME_SEC = 60; // TODO: Reduce to 15 seconds and move to config
 	protected WebDriver driver;
 	
 	JavascriptExecutor javaScriptExecutor;
@@ -60,10 +65,14 @@ public class AppPage {
 			driver.manage().window().maximize();		
 	}
 	
+	// FIX NEEDED: Remove implicit waits completely - they interfere with explicit waits
+	// Use only explicit waits for better control and reliability
+	// SHOULD BE REMOVED: Implicit waits cause unpredictable behavior
 	public void waitImplicitly() {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(WAIT_TIME_SEC));
 	}
 
+	// FIX NEEDED: Remove this method - implicit waits should not be used
 	public void waitImplicitly(int timeOutInSeconds) {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeOutInSeconds));
 	}
@@ -98,13 +107,17 @@ public class AppPage {
 
 			scrolltoElement(element);
 		} catch (Exception ex) {
-			
+			// FIX NEEDED: Empty catch block - should log the exception
+			// SHOULD BE: logger.error("Failed to scroll to element with locator: " + locator, ex);
+			// throw new RuntimeException("Element not found: " + locator, ex);
 		}
 	}
 	
+	// FIX NEEDED: Remove Thread.sleep() and use explicit wait instead
+	// Thread.sleep() makes tests unreliable and slow
 	public void scrolltoElement(WebElement element) throws InterruptedException {
 		getJavaScriptExecutor().executeScript("arguments[0].scrollIntoView(false)", element);
-		Thread.sleep(1000);
+		Thread.sleep(1000); // TODO: Replace with WebDriverWait for element to be stable
 	}
 	
 	public void waitForVisible(WebElement element) {
@@ -148,10 +161,18 @@ public class AppPage {
 	  
 	 protected static OSType detectedOS;
 	 
-	 public static OSType getOperatingSystemType() 
+	 // FIX NEEDED: This method always returns Windows - should detect actual OS
+	 // SHOULD BE: Proper OS detection using System.getProperty("os.name")
+	 public static OSType getOperatingSystemType()
 	 {
-		 detectedOS = OSType.Windows;
-		 return detectedOS;
+	  // TODO: Implement proper OS detection instead of hard-coding Windows
+	  // String osName = System.getProperty("os.name").toLowerCase();
+	  // if (osName.contains("win")) return OSType.Windows;
+	  // else if (osName.contains("mac")) return OSType.MacOS;
+	  // else if (osName.contains("nix") || osName.contains("nux")) return OSType.Linux;
+	  // else return OSType.Other;
+	  detectedOS = OSType.Windows;
+	  return detectedOS;
 	 }
 	
 

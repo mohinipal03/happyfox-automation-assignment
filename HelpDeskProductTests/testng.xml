@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!-- FIX NEEDED: Suite name should be more descriptive -->
+<!-- SHOULD BE: "HelpDesk Automation Test Suite" instead of "Scenario 1" -->
 <suite name="Scenario 1">
+  <!-- FIX NEEDED: Browser parameter should be externalized to properties file -->
   <parameter name="browser" value="chrome"/>
+  
+  <!-- FIX NEEDED: Test name should be descriptive -->
+  <!-- thread-count="5" is set but parallel execution is not configured -->
+  <!-- TODO: Add parallel="methods" or parallel="tests" to enable parallel execution -->
   <test thread-count="5" name="Test Case 1 plus Test Case 2">
     <classes>
+      <!-- FIX NEEDED: Only one test class - should include all test classes -->
+      <!-- TODO: Add more test classes for comprehensive test coverage -->
       <class name="Admin_Portal.AdminPortalTest1"/>
     </classes>
   </test> <!-- Test Case 1 plus Test Case 2 -->

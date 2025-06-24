@@ -15,9 +15,17 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class BaseTest {
     
     private static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
+    
+    // FIX NEEDED: Use ThreadLocal for WebDriver to support parallel execution
+    // Current implementation uses instance variable which causes issues in parallel tests
+    // REPLACE: private WebDriver driver;
+    // WITH: private static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
     private WebDriver driver;
     private String browserName = "chrome"; // default browser
 
+    // FIX NEEDED: Change from @BeforeSuite to @BeforeMethod for proper test isolation
+    // @BeforeSuite creates shared driver instance across all tests
+    // SHOULD BE: @BeforeMethod for individual test driver instances
     @BeforeSuite
     @Parameters({"browser"})
     public void beforeSuite(String browser) {
@@ -75,6 +83,9 @@ public class BaseTest {
         return driver;
     }
     
+    // FIX NEEDED: Change from @AfterSuite to @AfterMethod for proper cleanup
+    // Current implementation doesn't clean up driver after each test
+    // SHOULD BE: @AfterMethod for individual test cleanup
     @AfterSuite
     public void afterSuite() {
         if (driver != null) {
@@ -88,6 +99,8 @@ public class BaseTest {
         }
     }
 
+    // FIX NEEDED: When implementing ThreadLocal, this method should be:
+    // public static WebDriver getDriver() { return driverThreadLocal.get(); }
     public WebDriver getDriver() {
         return driver;
     }
