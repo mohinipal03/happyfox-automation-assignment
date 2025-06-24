@@ -18,22 +18,25 @@ import webdriverbase.BaseTest;
 
 public class CommonTests1 extends BaseTest{
 	
-public Login_Page hploginpage;
-public SupportPortalPage hpSupportPortalPage;
-public AdminPortalTest1stPage hpAdminPortalTest1;
-public AdminPortalTest2ndPage hpAdminPortalTest2;
+// FIX NEEDED: Variable names should follow camelCase convention
+public Login_Page hploginpage; // TODO: Rename to loginPage
+public SupportPortalPage hpSupportPortalPage; // TODO: Rename to supportPortalPage
+public AdminPortalTest1stPage hpAdminPortalTest1; // TODO: Rename to adminPortalPage1
+public AdminPortalTest2ndPage hpAdminPortalTest2; // TODO: Rename to adminPortalPage2
 	
-public String AdminPortalURL = "https://interview.supporthive.com/staff/login/";
-public static String SupportTicketURL = "https://interview.supporthive.com/new/";
-public static String browser = "Chrome";
-public static String username = "interview_agent";
-public static String password = "Interview@123";
-public static String statusName = "Issue created";
-public static String priorityName = "Assistance required";
-public static String Subject = "Test Ticket raised by XYZ";
-public static String Message = "Hi, i am having certain issues in the Happy fox portal. Can you please help me.";
-public static String FullName = "Reese Harrold";
-public static String Email = "testno100@gmail.com";
+// FIX NEEDED: All these values should be moved to configuration files (properties/JSON)
+// CRITICAL SECURITY ISSUE: Credentials should not be hard-coded in source code
+public String AdminPortalURL = "https://interview.supporthive.com/staff/login/"; // TODO: Move to config.properties
+public static String SupportTicketURL = "https://interview.supporthive.com/new/"; // TODO: Move to config.properties
+public static String browser = "Chrome"; // TODO: Move to config.properties
+public static String username = "interview_agent"; // TODO: Move to secure config or environment variables
+public static String password = "Interview@123"; // TODO: SECURITY RISK - Move to secure vault or env variables
+public static String statusName = "Issue created"; // TODO: Move to test data files
+public static String priorityName = "Assistance required"; // TODO: Move to test data files
+public static String Subject = "Test Ticket raised by XYZ"; // TODO: Move to test data files
+public static String Message = "Hi, i am having certain issues in the Happy fox portal. Can you please help me."; // TODO: Move to test data files
+public static String FullName = "Reese Harrold"; // TODO: Move to test data files
+public static String Email = "testno100@gmail.com"; // TODO: Move to test data files
 
 public void loginasAdmin() {
     
@@ -45,11 +48,11 @@ public void loginasAdmin() {
 		hploginpage = new Login_Page(getDriver());
 		hploginpage.navigateToHappyFoxHomePageURL(AdminPortalURL);
 		hploginpage.enterUsername(username);
-		System.out.println("username entered");
+		System.out.println("username entered"); // TODO: Replace with logger.info()
 		hploginpage.enterPassword(password);
-		System.out.println("password entered");
+		System.out.println("password entered"); // TODO: Replace with logger.info()
 		hploginpage.clickLoginbutton();
-		System.out.println("login clicked");
+		System.out.println("login clicked"); // TODO: Replace with logger.info()
 		hpAdminPortalTest1=hploginpage.validatePendingTicketsTitle();
 		
 		
@@ -93,12 +96,14 @@ public void loginasAdmin() {
 	  }
   }
   
+  // FIX NEEDED: Method names should follow camelCase convention
+  // SHOULD BE: testCase1() instead of TestCase1()
   public void TestCase1() {
-		
-		try {
-			
-			String Classname = getClass().getSimpleName();
-          System.out.println("start of method : " + Classname);
+  
+  try {
+  	
+  	String Classname = getClass().getSimpleName();
+          System.out.println("start of method : " + Classname); // TODO: Replace with logger.info()
           hpAdminPortalTest1=hploginpage.validatePendingTicketsTitle();
           hpAdminPortalTest1.clickStatus();
           hpAdminPortalTest1.clickNewStatus();
@@ -144,8 +149,9 @@ public void loginasAdmin() {
           System.out.println("Pending tickets clicked");
           hpAdminPortalTest2.openCustomerTicket(Subject);
           
-          //Assertion of the Priority and Status of the ticket created 
-          Assert.assertEquals(hpAdminPortalTest2.getContactName(),"Aravind"); 
+          //Assertion of the Priority and Status of the ticket created
+          // FIX NEEDED: Hard-coded expected value "Aravind" should be from test data
+          Assert.assertEquals(hpAdminPortalTest2.getContactName(),"Aravind"); // TODO: Move to test data
           Assert.assertEquals(hpAdminPortalTest2.getEmailtxt(),Email);
           
           hpAdminPortalTest2.clickReplyButton();

@@ -25,14 +25,20 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
         <!-- Dependency versions -->
-        <selenium.version>4.15.0</selenium.version>
-        <testng.version>7.8.0</testng.version>
-        <webdrivermanager.version>5.6.2</webdrivermanager.version>
+        <!-- FIX NEEDED: Consider updating to latest stable versions -->
+        <selenium.version>4.15.0</selenium.version> <!-- TODO: Check for latest version -->
+        <testng.version>7.8.0</testng.version> <!-- TODO: Check for latest version -->
+        <webdrivermanager.version>5.6.2</webdrivermanager.version> <!-- TODO: Check for latest version -->
         <slf4j.version>2.0.9</slf4j.version>
         <logback.version>1.4.14</logback.version>
         <poi.version>5.2.4</poi.version>
         <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>3.2.2</maven.surefire.plugin.version>
+        
+        <!-- FIX NEEDED: Add missing properties for better framework -->
+        <!-- TODO: Add ExtentReports version property -->
+        <!-- TODO: Add AssertJ version property for better assertions -->
+        <!-- TODO: Add Jackson version property for JSON handling -->
     </properties>
     
     <dependencyManagement>
@@ -86,6 +92,12 @@
         </dependencies>
     </dependencyManagement>
     
+    <!-- FIX NEEDED: Add missing dependencies for better framework -->
+    <!-- TODO: Add ExtentReports for better test reporting -->
+    <!-- TODO: Add AssertJ for fluent assertions -->
+    <!-- TODO: Add Jackson for JSON data handling -->
+    <!-- TODO: Add Apache Commons for utilities -->
+    
     <build>
         <pluginManagement>
             <plugins>
@@ -108,6 +120,9 @@
                         <suiteXmlFiles>
                             <suiteXmlFile>testng.xml</suiteXmlFile>
                         </suiteXmlFiles>
+                        <!-- FIX NEEDED: Add parallel execution configuration -->
+                        <!-- TODO: Add <parallel>methods</parallel> -->
+                        <!-- TODO: Add <threadCount>3</threadCount> -->
                     </configuration>
                 </plugin>
             </plugins>
