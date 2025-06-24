@@ -1,0 +1,9 @@
+2025-06-24 20:41:12.063 [main] INFO  webdriverbase.BaseTest - Starting test suite with browser: chrome
+2025-06-24 20:41:12.296 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 137.0.7151.119 (resolved driver for Chrome 137)
+2025-06-24 20:41:12.308 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as /Users/mohinipal/.cache/selenium/chromedriver/mac-arm64/137.0.7151.119/chromedriver
+2025-06-24 20:41:14.137 [main] INFO  webdriverbase.BaseTest - Browser initialized successfully
+2025-06-24 20:41:14.165 [main] DEBUG webdriverbase.AppPage - AppPage initialized for: Login_Page
+2025-06-24 20:41:14.165 [main] INFO  Admin_Portal.Login_Page - Navigating to URL: https://interview.supporthive.com/staff/login/
+2025-06-24 20:41:18.036 [main] INFO  Admin_Portal.Login_Page - Entering username: interview_agent
+2025-06-24 20:43:18.109 [main] INFO  webdriverbase.BaseTest - Closing browser
+2025-06-24 20:43:18.273 [main] INFO  webdriverbase.BaseTest - Browser closed successfully
